@@ -1,0 +1,10 @@
+CREATE  VIEW Permisos_Usuario
+AS
+select * from Usuario Us
+--select distinct IdUsuario, Patente.IdPatente from Usuario Us
+left join Usu_Pat up on (up.IdUsuario = Us.IdUsuario and up.Estado = 0)
+left join Usu_Fam uf on (uf.IdUsuario = Us.IdUsuario)
+left join Familia fam on  (fam.IdFamilia = uf.IdFamilia)
+left join Fam_Pat fp on (fp.IdFamilia = fam.IdFamilia and 0 = (select count(*) from Usu_Pat up2 where up2.Estado = 1 and up2.IdPatente = fp.IdPatente and up2.IdUsuario = Us.IdUsuario))
+inner join Patente pat on (pat.IdPatente = fp.IdPatente) or (pat.IdPatente = up.IdPatente)
+where Us.BajaLogica <> 1 and Us.Contador <> 3
