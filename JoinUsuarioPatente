@@ -1,0 +1,3 @@
+select us.Nick,pat.Descripcion,up.estado from Usuario us 
+left join Usu_Pat up on us.IdUsuario = up.IdUsuario
+left join Patente pat on up.IdPatente = pat.IdPatente
