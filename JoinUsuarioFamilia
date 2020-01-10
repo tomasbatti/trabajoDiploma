@@ -1,3 +1,0 @@
-select us.Nick,fam.Nombre from Usuario us 
-left join Usu_Fam uf on us.IdUsuario = uf.IdUsuario
-left join Familia fam on fam.IdFamilia = uf.IdFamilia
